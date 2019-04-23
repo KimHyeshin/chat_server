@@ -9,3 +9,10 @@
     npm install socket.io-client 
     ```
 3. Add single chat page 
+4. Change server host/port
+    ```
+    server: {
+        port: 8080, // default: 3000
+        host: '0.0.0.0' // default: localhost
+    }
+    ```
