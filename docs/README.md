@@ -8,3 +8,4 @@
     ```
     npm install socket.io-client 
     ```
+3. Add single chat page 
