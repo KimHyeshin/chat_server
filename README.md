@@ -7,7 +7,7 @@ vuetify, socket.io
 ## chat_client
 > chat project client side.
 
-[More details here >>](./client)  
+[More details here >>](https://github.com/KimHyeshin/chat_client)  
 [Project history is here >>](./docs)
 
 
