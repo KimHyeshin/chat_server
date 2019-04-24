@@ -1,13 +1,15 @@
-# nuxt_vuetify_chat
+# server
 
-> My first-class Nuxt.js project.  
-vuetify, socket.io
+> express-generator. express server project 
 
+## Build Setup
 
-## chat_client
-> chat project client side.
+``` bash
+# install dependencies
+$ npm install
 
-[More details here >>](https://github.com/KimHyeshin/chat_client)  
-[Project history is here >>](./docs)
+# run the app
+$ SET DEBUG=express-generator:* & npm start
+```
 
-
+For detailed explanation on how things work, checkout [express-socketio-tutorial](https://github.com/onedesign/express-socketio-tutorial).
