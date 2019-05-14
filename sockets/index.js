@@ -9,22 +9,23 @@ module.exports = function(io){
     })
     socket.on('enter', (name) => {
       const id = socket.id
-      if (mapIdName.hasOwnProperty(name)) {
-        const ret = `already user_name : ${name}`
+      console.log('name : ' + name)
+      if (mapIdName.hasOwnProperty(id)) {
+        const ret = { code: 1, name: mapIdName[id], message: `already socket_id : ${id}` }
         socket.emit('enter', ret)
         console.log(ret)
-      } else if (mapNameId.hasOwnProperty(id)) {
-        const ret = `already user_id : ${id}`
+      } else if (mapNameId.hasOwnProperty(name)) {
+        const ret = { code: 2, message: `already user_name : ${name}` }
         socket.emit('enter', ret)
         console.log(ret)
       } else {
         mapNameId[name] = id
         mapIdName[id] = name
-        socket.emit('enter', false)
         console.log(`new user(${name}) : ${id}`)
-        const ret = `[${new Date().format('HH:mm:ss')}] '${name}' 님이 입장하였습니다.`
-        socket.emit('sendAll', ret)
-        socket.broadcast.emit('sendAll', ret)
+        const msg = `[${new Date().format('HH:mm:ss')}] '${name}' 님이 입장하였습니다.`
+        const ret = { code: 0, name, message: msg }
+        socket.emit('enter', ret)
+        socket.broadcast.emit('sendAll', msg)
       }
     })
     socket.on('sendAll', (msg) => {
@@ -34,7 +35,11 @@ module.exports = function(io){
       socket.broadcast.emit('sendAll', ret)
     })
     socket.on('disconnect', (s) => {
-      console.log(`disconnected`)
+      const id = socket.id
+      const name = mapIdName[id]
+      console.log(`disconnected user : ${name}`)
+      delete mapNameId[name]
+      delete mapIdName[id]
     })
   });
 }
